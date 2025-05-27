@@ -29,7 +29,7 @@ namespace WPF_Projekt
             CustomWindowHelper.AttachAll(this, HeaderGrid, CloseButton, MinimizeButton, MaximizeButton);
 
         }
-
+        
 
 
         //private void btnClickMe_Click(object sender, RoutedEventArgs e)

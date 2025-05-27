@@ -11,7 +11,7 @@ namespace WPF_Projekt
 {
     public static class CustomWindowHelper
     {
-        // ===================== Maximize-Fix (WindowChromeFixer) =====================
+        // ===================== Maximize-Fix =====================
 
         public static void AttachMaximizeFix(Window window)
         {
@@ -96,7 +96,7 @@ namespace WPF_Projekt
             public int bottom;
         }
 
-        // ===================== Header-Interaktion (Drag, Doppelklick, Ziehen aus maximiert) =====================
+        // ===================== Header-Interaktion =====================
 
         private static bool isMouseDown = false;
         private static Point mouseDownScreenPos;
@@ -108,10 +108,9 @@ namespace WPF_Projekt
         {
             Window parentWindow = Window.GetWindow(headerArea);
 
-            headerArea.MouseLeftButtonDown += (s, e) =>
+            headerArea.MouseLeftButtonDown += (_, e) =>
             {
-                if (e.OriginalSource is DependencyObject source &&
-                    FindParent<Button>(source) is not null)
+                if (e.OriginalSource is DependencyObject source && FindParent<Button>(source) is not null)
                     return;
 
                 if (e.ClickCount == 2)
@@ -125,26 +124,26 @@ namespace WPF_Projekt
                 if (e.ButtonState == MouseButtonState.Pressed)
                 {
                     isMouseDown = true;
-                    mouseDownScreenPos = e.GetPosition(null); // relativ zur Screen-Wurzel
+                    hasDragged = false;
+                    mouseDownScreenPos = e.GetPosition(null);
                     xRatio = e.GetPosition(headerArea).X / headerArea.ActualWidth;
                     yRatio = e.GetPosition(headerArea).Y / headerArea.ActualHeight;
                 }
             };
 
-            parentWindow.MouseMove += (s, e) =>
+            parentWindow.MouseMove += (_, e) =>
             {
-                if (!isMouseDown || Mouse.LeftButton != MouseButtonState.Pressed)
+                if (!isMouseDown)
                     return;
 
                 Point currentScreen = Mouse.GetPosition(parentWindow);
                 currentScreen = parentWindow.PointToScreen(currentScreen);
 
-                var dx = currentScreen.X - mouseDownScreenPos.X;
-                var dy = currentScreen.Y - mouseDownScreenPos.Y;
+                double dx = currentScreen.X - mouseDownScreenPos.X;
+                double dy = currentScreen.Y - mouseDownScreenPos.Y;
                 double delta = Math.Sqrt(dx * dx + dy * dy);
 
-                const double dragThreshold = 2.0;
-                if (!hasDragged && delta < dragThreshold)
+                if (!hasDragged && delta < 2.0)
                     return;
 
                 if (!hasDragged)
@@ -162,18 +161,13 @@ namespace WPF_Projekt
                     hasDragged = true;
                 }
 
-                try
-                {
-                    window.DragMove();
-                }
-                catch (InvalidOperationException) { }
+                try { window.DragMove(); } catch { }
             };
 
-            parentWindow.MouseLeftButtonUp += (s, e) =>
+            parentWindow.MouseLeftButtonUp += (_, _) =>
             {
                 isMouseDown = false;
                 hasDragged = false;
-                headerArea.ReleaseMouseCapture();
             };
         }
 
@@ -206,20 +200,45 @@ namespace WPF_Projekt
 
         public static void EnableSmartResizeBorder(Window window, Thickness normalThickness)
         {
+            Button? maximizeBtn = null;
             window.StateChanged += (_, _) =>
             {
                 var chrome = WindowChrome.GetWindowChrome(window);
                 if (chrome != null)
                 {
-                    if (window.WindowState == WindowState.Maximized)
-                        chrome.ResizeBorderThickness = new Thickness(0);
-                    else
-                        chrome.ResizeBorderThickness = normalThickness;
+                    chrome.ResizeBorderThickness = window.WindowState == WindowState.Maximized
+                        ? new Thickness(0)
+                        : normalThickness;
+                }
+                if (maximizeBtn is null)
+                {
+                    maximizeBtn = FindChild<Button>(window, "MaximizeButton");
+                }
+                if (maximizeBtn != null)
+                {
+                    maximizeBtn.Content = window.WindowState == WindowState.Maximized ? "" : "";
                 }
             };
         }
 
-        // ===================== Haupt-API zum Anhängen aller Funktionen =====================
+        private static T? FindChild<T>(DependencyObject parent, string childName) where T : DependencyObject
+        {
+            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
+            {
+                var child = VisualTreeHelper.GetChild(parent, i);
+
+                if (child is T typedChild && (child as FrameworkElement)?.Name == childName)
+                    return typedChild;
+
+                var foundChild = FindChild<T>(child, childName);
+                if (foundChild != null)
+                    return foundChild;
+            }
+            return null;
+        }
+
+
+        // ===================== Haupt-API =====================
 
         public static void AttachAll(Window window,
                                      FrameworkElement header,

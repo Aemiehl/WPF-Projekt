@@ -43,18 +43,18 @@
             <StackPanel Orientation="Horizontal"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Right"
-                        Margin="0,0,5,0">
+                        Margin="0,0,3,0">
                 <!-- Minimize -->
-                <Button x:Name="MinimizeButton" Width="25" Height="25" Content="―"
-                    Background="LightGray" Foreground="Black" BorderThickness="0.5" Margin="0,0,5,0"/>
+                <Button x:Name="MinimizeButton" Style="{StaticResource RoundButtonStyle}" Width="23" Height="23" Content="&#xE921;" FontFamily="Segoe MDL2 Assets" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                    Background="LightGray" Foreground="Black" BorderThickness="0" Margin="0,0,5,0"/>
                 
                 <!-- Maximize/Restore -->
-                <Button x:Name="MaximizeButton" Width="25" Height="25" Content="☐"
-                    Background="LightGray" Foreground="Black" BorderThickness="0.5" Margin="0,0,5,0"/>
+                <Button x:Name="MaximizeButton" Style="{StaticResource RoundButtonStyle}" Width="23" Height="23" Content="&#xE922;" FontFamily="Segoe MDL2 Assets" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                    Background="LightGray" Foreground="Black" BorderThickness="0" Margin="0,0,5,0"/>
 
                 <!-- Close -->
-                <Button x:Name="CloseButton" Width="25" Height="25" Content="✕"
-                    Background="Red" Foreground="Black" BorderThickness="0.5" Margin="0,0,5,0"/>
+                <Button x:Name="CloseButton" Style="{StaticResource RoundButtonStyle}" Width="23" Height="23" Content="&#xE8BB;" FontFamily="Segoe MDL2 Assets" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                    Background="Red" Foreground="Black" BorderThickness="0" Margin="0,0,5,0"/>
             </StackPanel>
             
            
