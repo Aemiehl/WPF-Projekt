@@ -9,6 +9,7 @@ namespace WPF_Projekt
     /// </summary>
     public partial class App : Application
     {
+        
     }
 
 }

@@ -20,5 +20,23 @@ namespace WPF_Projekt
         {
             InitializeComponent();
         }
+
+        protected override void OnSourceInitialized(EventArgs e)
+        {
+            base.OnSourceInitialized(e);
+            CustomWindowHelper.AttachChromeFix(this);
+            CustomWindowHelper.AttachHeaderBehavior(HeaderGrid, this);
+            CustomWindowHelper.AttachDefaultButtonEvents(this, CloseButton, MinimizeButton, MaximizeButton);
+        }
+       
+       
+
+        //private void btnClickMe_Click(object sender, RoutedEventArgs e)
+        //{
+        //    tbHello.Text = "Button clicked!";
+        //}
+
+        //Command="SystemCommands.CloseWindowCommand"
+        //            CommandTarget="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
     }
 }
