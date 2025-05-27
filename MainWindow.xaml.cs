@@ -24,20 +24,13 @@ namespace WPF_Projekt
         protected override void OnSourceInitialized(EventArgs e)
         {
             base.OnSourceInitialized(e);
-            // Maximieren-Korrektur
-            CustomWindowHelper.AttachMaximizeFix(this);
 
-            // Head-Leiste aktivieren (Grid mit x:Name="HeaderGrid")
-            CustomWindowHelper.AttachHeaderInteraction(HeaderGrid, this);
+            // Attach the custom window helper to the current window
+            CustomWindowHelper.AttachAll(this, HeaderGrid, CloseButton, MinimizeButton, MaximizeButton);
 
-            // Button-Klicks (Button-Namen beachten)
-            CustomWindowHelper.AttachButtonEvents(this, CloseButton, MinimizeButton, MaximizeButton);
-
-            // Smart Resize Border aktivieren (dickere Ränder für Resizing)
-            CustomWindowHelper.EnableSmartResizeBorder(this, new Thickness(5));
         }
-       
-       
+
+
 
         //private void btnClickMe_Click(object sender, RoutedEventArgs e)
         //{

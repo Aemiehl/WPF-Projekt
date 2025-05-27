@@ -99,8 +99,10 @@ namespace WPF_Projekt
         // ===================== Header-Interaktion (Drag, Doppelklick, Ziehen aus maximiert) =====================
 
         private static bool isMouseDown = false;
-        private static Point mouseDownScreenPosition;
+        private static Point mouseDownScreenPos;
         private static bool hasDraggedFromMaximized = false;
+        private static double xRatio;
+        private static double yRatio;
 
         public static void AttachHeaderInteraction(FrameworkElement headerArea, Window window)
         {
@@ -122,39 +124,55 @@ namespace WPF_Projekt
                 {
                     isMouseDown = true;
                     hasDraggedFromMaximized = false;
-                    mouseDownScreenPosition = headerArea.PointToScreen(e.GetPosition(headerArea));
+                    mouseDownScreenPos = e.GetPosition(null); // relativ zur Screen-Wurzel
+                    xRatio = e.GetPosition(headerArea).X / headerArea.ActualWidth;
+                    yRatio = e.GetPosition(headerArea).Y / headerArea.ActualHeight;
                 }
             };
 
             headerArea.MouseMove += (s, e) =>
             {
-                if (!isMouseDown || hasDraggedFromMaximized)
+                if (!isMouseDown)
                     return;
 
-                Point currentScreen = headerArea.PointToScreen(e.GetPosition(headerArea));
-                Vector delta = currentScreen - mouseDownScreenPosition;
-
-                if (window.WindowState == WindowState.Maximized && delta.Length > 5)
+                if (Mouse.LeftButton != MouseButtonState.Pressed)
                 {
-                    double xRatio = e.GetPosition(headerArea).X / headerArea.ActualWidth;
-                    double yRatio = e.GetPosition(headerArea).Y / headerArea.ActualHeight;
-                    double newTop = currentScreen.Y - (window.Height * yRatio);
-                    double maxTop = SystemParameters.WorkArea.Top;
+                    isMouseDown = false;
+                    hasDraggedFromMaximized = false;
+                    return;
+                }
 
-                    window.WindowState = WindowState.Normal;
-                    window.Left = currentScreen.X - (window.Width * xRatio);
-                    window.Top = Math.Max(newTop, maxTop);
+                var currentScreen = e.GetPosition(null);
+                var dx = currentScreen.X - mouseDownScreenPos.X;
+                var dy = currentScreen.Y - mouseDownScreenPos.Y;
+                double delta = Math.Sqrt(dx * dx + dy * dy);
+
+                const double dragThreshold = 4.0;
+                if (!hasDraggedFromMaximized && delta < dragThreshold)
+                    return;
+
+                if (!hasDraggedFromMaximized)
+                {
+                    if (window.WindowState == WindowState.Maximized)
+                    {
+                        var screenPos = PointToScreen(headerArea, e.GetPosition(headerArea));
+                        double newTop = screenPos.Y - (window.Height * yRatio);
+                        double maxTop = SystemParameters.WorkArea.Top;
+
+                        window.WindowState = WindowState.Normal;
+                        window.Left = screenPos.X - (window.Width * xRatio);
+                        window.Top = Math.Max(newTop, maxTop);
+                    }
 
                     hasDraggedFromMaximized = true;
+                }
 
-                    // Kleines Delay hilft gegen Sprung/Close-Crash
-                    window.Dispatcher.InvokeAsync(() => window.DragMove(), System.Windows.Threading.DispatcherPriority.ApplicationIdle);
-                }
-                else if (window.WindowState == WindowState.Normal && delta.Length > 2)
+                try
                 {
-                    hasDraggedFromMaximized = true;
-                    window.DragMove();
+                    if (Mouse.LeftButton == MouseButtonState.Pressed)
+                        window.DragMove();
                 }
+                catch (InvalidOperationException) { }
             };
 
             headerArea.MouseLeftButtonUp += (s, e) =>
@@ -164,19 +182,9 @@ namespace WPF_Projekt
             };
         }
 
-        public static void EnableSmartResizeBorder(Window window, Thickness normalThickness)
+        private static Point PointToScreen(Visual relativeTo, Point point)
         {
-            window.StateChanged += (_, _) =>
-            {
-                var chrome = WindowChrome.GetWindowChrome(window);
-                if (chrome != null)
-                {
-                    if (window.WindowState == WindowState.Maximized)
-                        chrome.ResizeBorderThickness = new Thickness(0);
-                    else
-                        chrome.ResizeBorderThickness = normalThickness;
-                }
-            };
+            return relativeTo.PointToScreen(point);
         }
 
         private static T? FindParent<T>(DependencyObject child) where T : DependencyObject
@@ -202,6 +210,38 @@ namespace WPF_Projekt
                     ? WindowState.Normal
                     : WindowState.Maximized;
             };
+        }
+
+        // ===================== Resize Border je nach Zustand =====================
+
+        public static void EnableSmartResizeBorder(Window window, Thickness normalThickness)
+        {
+            window.StateChanged += (_, _) =>
+            {
+                var chrome = WindowChrome.GetWindowChrome(window);
+                if (chrome != null)
+                {
+                    if (window.WindowState == WindowState.Maximized)
+                        chrome.ResizeBorderThickness = new Thickness(0);
+                    else
+                        chrome.ResizeBorderThickness = normalThickness;
+                }
+            };
+        }
+
+        // ===================== Haupt-API zum Anhängen aller Funktionen =====================
+
+        public static void AttachAll(Window window,
+                                     FrameworkElement header,
+                                     Button closeButton,
+                                     Button minimizeButton,
+                                     Button maximizeButton,
+                                     Thickness? resizeBorderThickness = null)
+        {
+            AttachMaximizeFix(window);
+            AttachHeaderInteraction(header, window);
+            AttachButtonEvents(window, closeButton, minimizeButton, maximizeButton);
+            EnableSmartResizeBorder(window, resizeBorderThickness ?? new Thickness(5));
         }
     }
 }
