@@ -24,9 +24,17 @@ namespace WPF_Projekt
         protected override void OnSourceInitialized(EventArgs e)
         {
             base.OnSourceInitialized(e);
-            CustomWindowHelper.AttachChromeFix(this);
-            CustomWindowHelper.AttachHeaderBehavior(HeaderGrid, this);
-            CustomWindowHelper.AttachDefaultButtonEvents(this, CloseButton, MinimizeButton, MaximizeButton);
+            // Maximieren-Korrektur
+            CustomWindowHelper.AttachMaximizeFix(this);
+
+            // Head-Leiste aktivieren (Grid mit x:Name="HeaderGrid")
+            CustomWindowHelper.AttachHeaderInteraction(HeaderGrid, this);
+
+            // Button-Klicks (Button-Namen beachten)
+            CustomWindowHelper.AttachButtonEvents(this, CloseButton, MinimizeButton, MaximizeButton);
+
+            // Smart Resize Border aktivieren (dickere Ränder für Resizing)
+            CustomWindowHelper.EnableSmartResizeBorder(this, new Thickness(5));
         }
        
        

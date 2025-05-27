@@ -5,13 +5,15 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
+using System.Windows.Shell;
 
 namespace WPF_Projekt
 {
     public static class CustomWindowHelper
     {
-        // ========== WindowChromeFixer (Maximize-Bereich korrekt setzen) ==========
-        public static void AttachChromeFix(Window window)
+        // ===================== Maximize-Fix (WindowChromeFixer) =====================
+
+        public static void AttachMaximizeFix(Window window)
         {
             var hwnd = new WindowInteropHelper(window).Handle;
             HwndSource.FromHwnd(hwnd).AddHook(WindowProc);
@@ -94,13 +96,13 @@ namespace WPF_Projekt
             public int bottom;
         }
 
-        // ========== WindowInteractionHelper (Drag, Doppelklick, aus Max ziehen) ==========
+        // ===================== Header-Interaktion (Drag, Doppelklick, Ziehen aus maximiert) =====================
 
         private static bool isMouseDown = false;
         private static Point mouseDownScreenPosition;
         private static bool hasDraggedFromMaximized = false;
 
-        public static void AttachHeaderBehavior(FrameworkElement headerArea, Window window)
+        public static void AttachHeaderInteraction(FrameworkElement headerArea, Window window)
         {
             headerArea.MouseLeftButtonDown += (s, e) =>
             {
@@ -136,11 +138,20 @@ namespace WPF_Projekt
                 {
                     double xRatio = e.GetPosition(headerArea).X / headerArea.ActualWidth;
                     double yRatio = e.GetPosition(headerArea).Y / headerArea.ActualHeight;
+                    double newTop = currentScreen.Y - (window.Height * yRatio);
+                    double maxTop = SystemParameters.WorkArea.Top;
 
                     window.WindowState = WindowState.Normal;
                     window.Left = currentScreen.X - (window.Width * xRatio);
-                    window.Top = currentScreen.Y - (window.Height * yRatio);
+                    window.Top = Math.Max(newTop, maxTop);
 
+                    hasDraggedFromMaximized = true;
+
+                    // Kleines Delay hilft gegen Sprung/Close-Crash
+                    window.Dispatcher.InvokeAsync(() => window.DragMove(), System.Windows.Threading.DispatcherPriority.ApplicationIdle);
+                }
+                else if (window.WindowState == WindowState.Normal && delta.Length > 2)
+                {
                     hasDraggedFromMaximized = true;
                     window.DragMove();
                 }
@@ -150,6 +161,21 @@ namespace WPF_Projekt
             {
                 isMouseDown = false;
                 hasDraggedFromMaximized = false;
+            };
+        }
+
+        public static void EnableSmartResizeBorder(Window window, Thickness normalThickness)
+        {
+            window.StateChanged += (_, _) =>
+            {
+                var chrome = WindowChrome.GetWindowChrome(window);
+                if (chrome != null)
+                {
+                    if (window.WindowState == WindowState.Maximized)
+                        chrome.ResizeBorderThickness = new Thickness(0);
+                    else
+                        chrome.ResizeBorderThickness = normalThickness;
+                }
             };
         }
 
@@ -164,12 +190,9 @@ namespace WPF_Projekt
             return null;
         }
 
-        // ========== Fenster-Button-Events ==========
+        // ===================== Fensterbutton-Ereignisse =====================
 
-        public static void AttachDefaultButtonEvents(Window window,
-                                                     Button closeButton,
-                                                     Button minimizeButton,
-                                                     Button maximizeButton)
+        public static void AttachButtonEvents(Window window, Button closeButton, Button minimizeButton, Button maximizeButton)
         {
             closeButton.Click += (_, _) => window.Close();
             minimizeButton.Click += (_, _) => window.WindowState = WindowState.Minimized;
