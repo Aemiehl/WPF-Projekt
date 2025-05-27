@@ -100,12 +100,14 @@ namespace WPF_Projekt
 
         private static bool isMouseDown = false;
         private static Point mouseDownScreenPos;
-        private static bool hasDraggedFromMaximized = false;
+        private static bool hasDragged = false;
         private static double xRatio;
         private static double yRatio;
 
         public static void AttachHeaderInteraction(FrameworkElement headerArea, Window window)
         {
+            Window parentWindow = Window.GetWindow(headerArea);
+
             headerArea.MouseLeftButtonDown += (s, e) =>
             {
                 if (e.OriginalSource is DependencyObject source &&
@@ -123,68 +125,56 @@ namespace WPF_Projekt
                 if (e.ButtonState == MouseButtonState.Pressed)
                 {
                     isMouseDown = true;
-                    hasDraggedFromMaximized = false;
                     mouseDownScreenPos = e.GetPosition(null); // relativ zur Screen-Wurzel
                     xRatio = e.GetPosition(headerArea).X / headerArea.ActualWidth;
                     yRatio = e.GetPosition(headerArea).Y / headerArea.ActualHeight;
                 }
             };
 
-            headerArea.MouseMove += (s, e) =>
+            parentWindow.MouseMove += (s, e) =>
             {
-                if (!isMouseDown)
+                if (!isMouseDown || Mouse.LeftButton != MouseButtonState.Pressed)
                     return;
 
-                if (Mouse.LeftButton != MouseButtonState.Pressed)
-                {
-                    isMouseDown = false;
-                    hasDraggedFromMaximized = false;
-                    return;
-                }
+                Point currentScreen = Mouse.GetPosition(parentWindow);
+                currentScreen = parentWindow.PointToScreen(currentScreen);
 
-                var currentScreen = e.GetPosition(null);
                 var dx = currentScreen.X - mouseDownScreenPos.X;
                 var dy = currentScreen.Y - mouseDownScreenPos.Y;
                 double delta = Math.Sqrt(dx * dx + dy * dy);
 
-                const double dragThreshold = 4.0;
-                if (!hasDraggedFromMaximized && delta < dragThreshold)
+                const double dragThreshold = 2.0;
+                if (!hasDragged && delta < dragThreshold)
                     return;
 
-                if (!hasDraggedFromMaximized)
+                if (!hasDragged)
                 {
                     if (window.WindowState == WindowState.Maximized)
                     {
-                        var screenPos = PointToScreen(headerArea, e.GetPosition(headerArea));
-                        double newTop = screenPos.Y - (window.Height * yRatio);
+                        double newTop = currentScreen.Y - (window.Height * yRatio);
                         double maxTop = SystemParameters.WorkArea.Top;
 
                         window.WindowState = WindowState.Normal;
-                        window.Left = screenPos.X - (window.Width * xRatio);
+                        window.Left = currentScreen.X - (window.Width * xRatio);
                         window.Top = Math.Max(newTop, maxTop);
                     }
 
-                    hasDraggedFromMaximized = true;
+                    hasDragged = true;
                 }
 
                 try
                 {
-                    if (Mouse.LeftButton == MouseButtonState.Pressed)
-                        window.DragMove();
+                    window.DragMove();
                 }
                 catch (InvalidOperationException) { }
             };
 
-            headerArea.MouseLeftButtonUp += (s, e) =>
+            parentWindow.MouseLeftButtonUp += (s, e) =>
             {
                 isMouseDown = false;
-                hasDraggedFromMaximized = false;
+                hasDragged = false;
+                headerArea.ReleaseMouseCapture();
             };
-        }
-
-        private static Point PointToScreen(Visual relativeTo, Point point)
-        {
-            return relativeTo.PointToScreen(point);
         }
 
         private static T? FindParent<T>(DependencyObject child) where T : DependencyObject
