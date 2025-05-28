@@ -43,28 +43,35 @@
             <StackPanel Orientation="Horizontal"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Right"
-                        Margin="0,0,3,0">
+                        Margin="0,0,0,0">
                 <!-- Minimize -->
-                <Button x:Name="MinimizeButton" Style="{StaticResource RoundButtonStyle}" Width="23" Height="23" Content="&#xE921;" FontFamily="Segoe MDL2 Assets" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                <Button x:Name="MinimizeButton" Style="{StaticResource RoundButtonStyle}" Width="22" Height="22" Content="&#xE921;" FontFamily="Segoe MDL2 Assets" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                     Background="LightGray" Foreground="Black" BorderThickness="0" Margin="0,0,5,0"/>
-                
+
                 <!-- Maximize/Restore -->
-                <Button x:Name="MaximizeButton" Style="{StaticResource RoundButtonStyle}" Width="23" Height="23" Content="&#xE922;" FontFamily="Segoe MDL2 Assets" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                <Button x:Name="MaximizeButton" Style="{StaticResource RoundButtonStyle}" Width="22" Height="22" Content="&#xE922;" FontFamily="Segoe MDL2 Assets" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                     Background="LightGray" Foreground="Black" BorderThickness="0" Margin="0,0,5,0"/>
 
                 <!-- Close -->
-                <Button x:Name="CloseButton" Style="{StaticResource RoundButtonStyle}" Width="23" Height="23" Content="&#xE8BB;" FontFamily="Segoe MDL2 Assets" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                <Button x:Name="CloseButton" Style="{StaticResource RoundButtonStyle}" Width="22" Height="22" Content="&#xE8BB;" FontFamily="Segoe MDL2 Assets" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                     Background="Red" Foreground="Black" BorderThickness="0" Margin="0,0,5,0"/>
             </StackPanel>
-            
-           
         </Grid>
         
         <!--hier ist die Scrollbar-->
-        <ScrollBar Name="BodyScrollbar" Grid.Row="1" HorizontalAlignment="Right"/>
-         
+        <Rectangle Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            <Rectangle.Fill>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1.4,.85">
+                    <GradientStop Color="Purple" Offset="-.2"/>
+                    <GradientStop Color="LightGray" Offset="0.2"/>
+                    <GradientStop Color="Black" Offset="0.8"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <ScrollBar Name="BodyScrollbar" Style="{StaticResource DarkModeScrollBarStyle}" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Stretch"/>
+
         <!--hier ist der Container für alle Apps-->
-        <WrapPanel Name="AppContainer" Grid.Row="1" Margin="10,10,30,10">
+        <WrapPanel Name="AppContainer" Grid.Row="1" Margin="10,10,32,10">
             <TextBlock Text="Welcome to the App Launcher!" FontSize="24" Margin="0,0,10,0"
 />
     

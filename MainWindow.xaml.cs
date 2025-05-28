@@ -1,6 +1,8 @@
-﻿using System.Text;
+﻿using System.Security.RightsManagement;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -16,6 +18,7 @@ namespace WPF_Projekt
     /// </summary>
     public partial class MainWindow : Window
     {
+
         public MainWindow()
         {
             InitializeComponent();
@@ -27,10 +30,13 @@ namespace WPF_Projekt
 
             // Attach the custom window helper to the current window
             CustomWindowHelper.AttachAll(this, HeaderGrid, CloseButton, MinimizeButton, MaximizeButton);
-
+            this.SizeChanged += (_, __) => UpdateScrollBarViewportSize();
         }
-        
 
+        private void UpdateScrollBarViewportSize()
+        {
+            BodyScrollbar.ViewportSize = BodyScrollbar.Maximum * (30 / BodyScrollbar.ActualHeight);
+        }
 
         //private void btnClickMe_Click(object sender, RoutedEventArgs e)
         //{
