@@ -49,9 +49,9 @@
     </Style>
 
     <Style x:Key="DarkModeScrollBarStyle" TargetType="ScrollBar">
-      <Setter Property="Minimum" Value="0" />
-      <Setter Property="Maximum" Value="1000" />
-      <Setter Property="ViewportSize" Value="60" />
+      <!--<Setter Property="Minimum" Value="0" />
+      <Setter Property="Maximum" Value="1000000" />
+      <Setter Property="ViewportSize" Value="60" />-->
       <Setter Property="Width" Value="25" />
       <Setter Property="Template">
         <Setter.Value>
