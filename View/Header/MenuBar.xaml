@@ -1,0 +1,68 @@
+﻿<UserControl x:Class="WPF_Projekt.View.Header.MenuBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WPF_Projekt.View.Header"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <Grid Grid.Row="0" x:Name="HeaderGrid">
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1.1,0">
+                <GradientStop Color="LightGray" Offset="0.2"/>
+                <GradientStop Color="DarkGray" Offset="0.7"/>
+                <GradientStop Color="Black" Offset="1.0"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+
+        <!--Titel-->
+        <TextBlock Text="&lt;My App/&gt;" Width="100px" FontSize="15" Foreground="Black" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,5,0" FontWeight="DemiBold"/>
+
+        <!--Menu Items-->
+        <Menu Margin="100,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent" BorderThickness="0,0,0,2" BorderBrush="Purple">
+            <MenuItem Header="File" Background="Transparent" FontSize="14" Foreground="Black" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3,2,3,2" BorderThickness="1" BorderBrush="Black">
+                <MenuItem Header="Add" />
+                <MenuItem Header="Remove"/>
+                <MenuItem Header="Settings"/>
+            </MenuItem>
+            <MenuItem Header="Edit" Background="Transparent" FontSize="14" Foreground="Black" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3,2,3,2" BorderThickness="1" BorderBrush="Black">
+                <MenuItem Header="Darkmode" x:Name="CheckBox_Darkmode" IsCheckable="True" IsChecked="True" Checked="OnDarkmodeCheckboxChanged" Unchecked="OnDarkmodeCheckboxChanged"/>
+                <!--<CheckBox x:Name="CheckBox_Darkmode" Content="Darkmode" IsChecked="True" Checked="OnDarkmodeCheckboxChanged" Unchecked="OnDarkmodeCheckboxChanged"/>-->
+            </MenuItem>
+        </Menu>
+
+        <!--Knoepfe-->
+        <StackPanel Orientation="Horizontal"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Right"
+            Margin="0,0,0,0">
+            <!-- Minimize -->
+            <Button x:Name="MinimizeButton" 
+                    Style="{StaticResource ButtonTaskBar}" 
+                    Width="22" Height="22" 
+                    Content="&#xE921;" FontFamily="Segoe MDL2 Assets" 
+                    HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                    Background="LightGray" Foreground="Black" BorderThickness="0" Margin="0,0,5,0"/>
+
+            <!-- Maximize/Restore -->
+            <Button x:Name="MaximizeButton" 
+                    Style="{StaticResource ButtonTaskBar}" 
+                    Width="22" Height="22" 
+                    Content="&#xE922;" FontFamily="Segoe MDL2 Assets" 
+                    HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                    Background="LightGray" Foreground="Black" BorderThickness="0" Margin="0,0,5,0"/>
+
+            <!-- Close -->
+            <Button x:Name="CloseButton" 
+                    Style="{StaticResource ButtonTaskBar}" 
+                    Width="22" Height="22" 
+                    Content="&#xE8BB;" FontFamily="Segoe MDL2 Assets" 
+                    HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                    Background="Red" Foreground="Black" BorderThickness="0" Margin="0,0,5,0"/>
+        </StackPanel>
+    </Grid>
+    
+</UserControl>
+
+    

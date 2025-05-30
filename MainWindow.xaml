@@ -5,6 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_Projekt"
+        xmlns:Header="clr-namespace:WPF_Projekt.View.Header"
         mc:Ignorable="d"
         Title="AppLauncher" Height="450" Width="800"
         WindowStyle="None"
@@ -25,51 +26,8 @@
         </Grid.RowDefinitions>
         
         <!--hier soll die ganze HeadLeiste Definiert werden-->
-        <Grid Grid.Row="0" x:Name="HeaderGrid">
-            <!--Farb verlauf-->
-            <Grid.Background>
-                <LinearGradientBrush StartPoint="0,0" EndPoint="1.1,0">
-                    <GradientStop Color="LightGray" Offset="0.2"/>
-                    <GradientStop Color="DarkGray" Offset="0.7"/>
-                    <GradientStop Color="Black" Offset="1.0"/>
-                </LinearGradientBrush>
-            </Grid.Background>
+        <Header:MenuBar/>
 
-            <!--Titel-->
-            <TextBlock Text="&lt;My App/&gt;" Width="100px" FontSize="15" Foreground="Black" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,5,0" FontWeight="DemiBold"/>
-            
-            <!--Menu Items-->
-            <Menu Margin="100,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent" BorderThickness="0,0,0,2" BorderBrush="Purple">
-                <MenuItem Header="File" Background="Transparent" FontSize="14" Foreground="Black" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3,2,3,2" BorderThickness="1" BorderBrush="Black">
-                    <MenuItem Header="Add" />
-                    <MenuItem Header="Remove"/>
-                    <MenuItem Header="Settings"/>
-                </MenuItem>
-                <MenuItem Header="Edit" Background="Transparent" FontSize="14" Foreground="Black" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3,2,3,2" BorderThickness="1" BorderBrush="Black">
-                    <MenuItem Header="Darkmode" x:Name="CheckBox_Darkmode" IsCheckable="True" IsChecked="True" Checked="OnDarkmodeCheckboxChanged" Unchecked="OnDarkmodeCheckboxChanged"/>
-                    <!--<CheckBox x:Name="CheckBox_Darkmode" Content="Darkmode" IsChecked="True" Checked="OnDarkmodeCheckboxChanged" Unchecked="OnDarkmodeCheckboxChanged"/>-->
-                </MenuItem>
-            </Menu>
-
-                    <!--Knoepfe-->
-            <StackPanel Orientation="Horizontal"
-                        VerticalAlignment="Center"
-                        HorizontalAlignment="Right"
-                        Margin="0,0,0,0">
-                <!-- Minimize -->
-                <Button x:Name="MinimizeButton" Style="{StaticResource ButtonTaskBar}" Width="22" Height="22" Content="&#xE921;" FontFamily="Segoe MDL2 Assets" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-                    Background="LightGray" Foreground="Black" BorderThickness="0" Margin="0,0,5,0"/>
-
-                <!-- Maximize/Restore -->
-                <Button x:Name="MaximizeButton" Style="{StaticResource ButtonTaskBar}" Width="22" Height="22" Content="&#xE922;" FontFamily="Segoe MDL2 Assets" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-                    Background="LightGray" Foreground="Black" BorderThickness="0" Margin="0,0,5,0"/>
-
-                <!-- Close -->
-                <Button x:Name="CloseButton" Style="{StaticResource ButtonTaskBar}" Width="22" Height="22" Content="&#xE8BB;" FontFamily="Segoe MDL2 Assets" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-                    Background="Red" Foreground="Black" BorderThickness="0" Margin="0,0,5,0"/>
-            </StackPanel>
-        </Grid>
-        
         <!--hier ist der Background-->
         <Rectangle Grid.Row="1" 
                    VerticalAlignment="Stretch" 
