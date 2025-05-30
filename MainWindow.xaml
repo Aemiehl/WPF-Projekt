@@ -15,11 +15,10 @@
         <shell:WindowChrome 
             CaptionHeight="0"
             ResizeBorderThickness="5" 
-            UseAeroCaptionButtons="False"
-            /> 
+            UseAeroCaptionButtons="False"/> 
     </WindowChrome.WindowChrome>
 
-    <Grid Name="WholeApp">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="35" /> 
             <RowDefinition Height="*" /> 
@@ -37,54 +36,61 @@
             </Grid.Background>
 
             <!--Titel-->
-            <TextBlock Text="&lt;My App/&gt;" Width="100px" FontSize="15" Foreground="Black" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0" FontWeight="DemiBold"/>
+            <TextBlock Text="&lt;My App/&gt;" Width="100px" FontSize="15" Foreground="Black" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,5,0" FontWeight="DemiBold"/>
             
-            <!--Knoepfe-->
+            <!--Menu Items-->
+            <Menu Margin="100,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent" BorderThickness="0,0,0,2" BorderBrush="Purple">
+                <MenuItem Header="File" Background="Transparent" FontSize="14" Foreground="Black" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3,2,3,2" BorderThickness="1" BorderBrush="Black">
+                    <MenuItem Header="Add" />
+                    <MenuItem Header="Remove"/>
+                    <MenuItem Header="Settings"/>
+                </MenuItem>
+                <MenuItem Header="Edit" Background="Transparent" FontSize="14" Foreground="Black" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3,2,3,2" BorderThickness="1" BorderBrush="Black">
+                    <MenuItem Header="Darkmode" x:Name="CheckBox_Darkmode" IsCheckable="True" IsChecked="True" Checked="OnDarkmodeCheckboxChanged" Unchecked="OnDarkmodeCheckboxChanged"/>
+                    <!--<CheckBox x:Name="CheckBox_Darkmode" Content="Darkmode" IsChecked="True" Checked="OnDarkmodeCheckboxChanged" Unchecked="OnDarkmodeCheckboxChanged"/>-->
+                </MenuItem>
+            </Menu>
+
+                    <!--Knoepfe-->
             <StackPanel Orientation="Horizontal"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Right"
                         Margin="0,0,0,0">
                 <!-- Minimize -->
-                <Button x:Name="MinimizeButton" Style="{StaticResource RoundButtonStyle}" Width="22" Height="22" Content="&#xE921;" FontFamily="Segoe MDL2 Assets" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                <Button x:Name="MinimizeButton" Style="{StaticResource ButtonTaskBar}" Width="22" Height="22" Content="&#xE921;" FontFamily="Segoe MDL2 Assets" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                     Background="LightGray" Foreground="Black" BorderThickness="0" Margin="0,0,5,0"/>
 
                 <!-- Maximize/Restore -->
-                <Button x:Name="MaximizeButton" Style="{StaticResource RoundButtonStyle}" Width="22" Height="22" Content="&#xE922;" FontFamily="Segoe MDL2 Assets" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                <Button x:Name="MaximizeButton" Style="{StaticResource ButtonTaskBar}" Width="22" Height="22" Content="&#xE922;" FontFamily="Segoe MDL2 Assets" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                     Background="LightGray" Foreground="Black" BorderThickness="0" Margin="0,0,5,0"/>
 
                 <!-- Close -->
-                <Button x:Name="CloseButton" Style="{StaticResource RoundButtonStyle}" Width="22" Height="22" Content="&#xE8BB;" FontFamily="Segoe MDL2 Assets" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                <Button x:Name="CloseButton" Style="{StaticResource ButtonTaskBar}" Width="22" Height="22" Content="&#xE8BB;" FontFamily="Segoe MDL2 Assets" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                     Background="Red" Foreground="Black" BorderThickness="0" Margin="0,0,5,0"/>
             </StackPanel>
         </Grid>
         
         <!--hier ist der Background-->
-        <Rectangle Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        <Rectangle Grid.Row="1" 
+                   VerticalAlignment="Stretch" 
+                   HorizontalAlignment="Stretch">
             <Rectangle.Fill>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1.4,.85">
                     <GradientStop Color="Purple" Offset="-.2"/>
                     <GradientStop Color="LightGray" Offset="0.2"/>
-                    <GradientStop Color="Black" Offset="0.8"/>
+                    <GradientStop x:Name="DarkmodeColor" Color="Black" Offset="0.8"/>
                 </LinearGradientBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <!--<ScrollBar Name="BodyScrollbar" Style="{StaticResource DarkModeScrollBarStyle}" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Stretch" Margin="0,0,3,0"/>-->
 
         <!--hier ist der Container für alle Apps-->
-        <!--<WrapPanel Name="AppContainer" Grid.Row="1" Margin="10,10,32,10">
-            <TextBlock Text="Welcome to the App Launcher!" FontSize="24" Margin="0,0,10,0"
-/>
-    
-        </WrapPanel>-->
-
-        <ScrollViewer Name="BodyScrollViewer"
-              Grid.Row="1"
-              HorizontalScrollBarVisibility="Disabled"
-              VerticalScrollBarVisibility="Auto"
-              VerticalAlignment="Stretch"
-              HorizontalAlignment="Stretch"
-              Background="Transparent">
-
+        <ScrollViewer Grid.Row="1"
+                      HorizontalScrollBarVisibility="Disabled"
+                      VerticalScrollBarVisibility="Auto"
+                      VerticalAlignment="Stretch"
+                      HorizontalAlignment="Stretch"
+                      Background="Transparent"> 
+            <!--hier ist die Scrollbar-->
             <ScrollViewer.Resources>
                 <Style TargetType="ScrollBar" BasedOn="{StaticResource ScrollBarRound}">
                     <Setter Property="Margin" Value="0,0,5,0"/>
@@ -92,10 +98,10 @@
                     <Setter Property="VerticalAlignment" Value="Stretch"/>
                 </Style>
             </ScrollViewer.Resources>
-
+            <!--hier sind die apps-->
             <WrapPanel Name="AppContainer"
                Orientation="Horizontal"
-               Margin="10,10,0,10">
+               Margin="5,10,5,10">
                 <WrapPanel.Resources>
                     <Style TargetType="Button" BasedOn="{StaticResource ButtonWrapPanalApp}"/>
                 </WrapPanel.Resources>

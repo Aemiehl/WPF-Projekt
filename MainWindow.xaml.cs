@@ -1,4 +1,5 @@
-﻿using System.Security.RightsManagement;
+﻿using System;
+using System.Security.RightsManagement;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -41,6 +42,20 @@ namespace WPF_Projekt
         private void UpdateScrollBarViewportSize()
         {
             //BodyScrollbar.ViewportSize = BodyScrollbar.Maximum * (30 / BodyScrollbar.ActualHeight);
+        }
+
+        private void OnDarkmodeCheckboxChanged(object sender, RoutedEventArgs e)
+        {
+            if (DarkmodeColor == null)
+                return;
+
+            if (CheckBox_Darkmode.IsChecked == true){
+                DarkmodeColor.Color = Colors.Black;
+            }
+            else
+            {
+                DarkmodeColor.Color = Colors.White;
+            }
         }
 
         //private void btnClickMe_Click(object sender, RoutedEventArgs e)
