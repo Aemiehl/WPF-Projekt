@@ -32,7 +32,7 @@ namespace WPF_Projekt
             CustomWindowHelper.AttachAll(this, HeaderGrid, CloseButton, MinimizeButton, MaximizeButton);
             this.SizeChanged += (_, __) => UpdateScrollBarViewportSize();
 
-            for (int i = 0; i < 1113; i++)
+            for (int i = 0; i < 115; i++)
             {
                 AppContainer.Children.Add(new Button { Content = $"App {i + 1}" });
             }

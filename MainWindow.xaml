@@ -58,7 +58,7 @@
             </StackPanel>
         </Grid>
         
-        <!--hier ist die Scrollbar-->
+        <!--hier ist der Background-->
         <Rectangle Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
             <Rectangle.Fill>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1.4,.85">
@@ -80,14 +80,14 @@
         <ScrollViewer Name="BodyScrollViewer"
               Grid.Row="1"
               HorizontalScrollBarVisibility="Disabled"
-              VerticalScrollBarVisibility="Visible"
+              VerticalScrollBarVisibility="Auto"
               VerticalAlignment="Stretch"
               HorizontalAlignment="Stretch"
               Background="Transparent">
 
             <ScrollViewer.Resources>
-                <Style TargetType="ScrollBar" BasedOn="{StaticResource DarkModeScrollBarStyle}">
-                    <Setter Property="Margin" Value="0,0,4,0"/>
+                <Style TargetType="ScrollBar" BasedOn="{StaticResource ScrollBarRound}">
+                    <Setter Property="Margin" Value="0,0,5,0"/>
                     <Setter Property="HorizontalAlignment" Value="Right"/>
                     <Setter Property="VerticalAlignment" Value="Stretch"/>
                 </Style>
@@ -97,43 +97,7 @@
                Orientation="Horizontal"
                Margin="10,10,0,10">
                 <WrapPanel.Resources>
-                    <Style TargetType="Button">
-                        <Setter Property="Margin" Value="5,5,5,5"/>
-                        <Setter Property="Width" Value="140"/>
-                        <Setter Property="Height" Value="90"/>
-                        <Setter Property="Background" Value="#80D3D3D3"/>
-                        <Setter Property="Foreground" Value="Black"/>
-                        <Setter Property="FontSize" Value="14"/>
-                        <Setter Property="BorderThickness" Value="3,3,4,4"/>
-                        <Setter Property="BorderBrush" Value="Black"/>
-                        <!--<Setter Property="Opacity" Value="0.7"/>-->
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="Button">
-                                    <Border x:Name="border"
-                                            Background="{TemplateBinding Background}"
-                                            BorderBrush="{TemplateBinding BorderBrush}"
-                                            BorderThickness="{TemplateBinding BorderThickness}"
-                                            CornerRadius="15">
-                                        <ContentPresenter HorizontalAlignment="Center"
-                                          VerticalAlignment="Center"/>
-                                    </Border>
-                                    <ControlTemplate.Triggers>
-                                        <!-- Hover: Rand schmäler -->
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter TargetName="border" Property="BorderThickness" Value="2,2,3,3"/>
-                                            <Setter TargetName="border" Property="Background" Value="#999"/>
-                                        </Trigger>
-                                        <!-- Pressed: Kein Rand, dunkler Hintergrund -->
-                                        <Trigger Property="IsPressed" Value="True">
-                                            <Setter TargetName="border" Property="BorderThickness" Value="1,1,1,1"/>
-                                            <Setter TargetName="border" Property="Background" Value="#666"/>
-                                        </Trigger>
-                                    </ControlTemplate.Triggers>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
+                    <Style TargetType="Button" BasedOn="{StaticResource ButtonWrapPanalApp}"/>
                 </WrapPanel.Resources>
             </WrapPanel>
         </ScrollViewer>
