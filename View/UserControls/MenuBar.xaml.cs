@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WPF_Projekt.View.Header
+namespace WPF_Projekt.View.UserControls
 {
     /// <summary>
     /// Interaktionslogik für MenuBar.xaml

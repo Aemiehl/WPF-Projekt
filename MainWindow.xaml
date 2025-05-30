@@ -5,7 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_Projekt"
-        xmlns:Header="clr-namespace:WPF_Projekt.View.Header"
+        xmlns:UserControls="clr-namespace:WPF_Projekt.View.UserControls"
         mc:Ignorable="d"
         Title="AppLauncher" Height="450" Width="800"
         WindowStyle="None"
@@ -26,7 +26,7 @@
         </Grid.RowDefinitions>
         
         <!--hier soll die ganze HeadLeiste Definiert werden-->
-        <Header:MenuBar/>
+        <UserControls:MenuBar/>
 
         <!--hier ist der Background-->
         <Rectangle Grid.Row="1" 
