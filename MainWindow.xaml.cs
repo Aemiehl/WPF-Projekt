@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Security.RightsManagement;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -14,9 +13,7 @@ using System.Windows.Shapes;
 
 namespace WPF_Projekt
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
+
     public partial class MainWindow : Window
     {
 
@@ -29,14 +26,8 @@ namespace WPF_Projekt
         {
             base.OnSourceInitialized(e);
 
-            for (int i = 0; i < 115; i++)
-            {
-                AppContainer.Children.Add(new Button { Content = $"App {i + 1}" });
-            }
+            
 
         }
-
-
-
     }
 }

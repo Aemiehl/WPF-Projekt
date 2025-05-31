@@ -6,8 +6,16 @@
              xmlns:local="clr-namespace:WPF_Projekt.View.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Templates/TaskBarButtonStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
 
-    <Grid Grid.Row="0" x:Name="HeaderGrid">
+    <Grid Height="35" x:Name="HeaderGrid">
         <Grid.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1.1,0">
                 <GradientStop Color="LightGray" Offset="0.2"/>
@@ -39,7 +47,7 @@
             Margin="0,0,0,0">
             <!-- Minimize -->
             <Button x:Name="MinimizeButton" 
-                    Style="{StaticResource ButtonTaskBar}" 
+                    Style="{StaticResource TaskBarButton}" 
                     Width="22" Height="22" 
                     Content="&#xE921;" FontFamily="Segoe MDL2 Assets" 
                     HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
@@ -47,7 +55,7 @@
 
             <!-- Maximize/Restore -->
             <Button x:Name="MaximizeButton" 
-                    Style="{StaticResource ButtonTaskBar}" 
+                    Style="{StaticResource TaskBarButton}" 
                     Width="22" Height="22" 
                     Content="&#xE922;" FontFamily="Segoe MDL2 Assets" 
                     HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
@@ -55,7 +63,7 @@
 
             <!-- Close -->
             <Button x:Name="CloseButton" 
-                    Style="{StaticResource ButtonTaskBar}" 
+                    Style="{StaticResource TaskBarButton}" 
                     Width="22" Height="22" 
                     Content="&#xE8BB;" FontFamily="Segoe MDL2 Assets" 
                     HorizontalContentAlignment="Center" VerticalContentAlignment="Center"

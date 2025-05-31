@@ -2,117 +2,13 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     
   
-    <Style x:Key="ButtonTaskBar" TargetType="Button">
-        <Setter Property="Width" Value="50"/>
-        <Setter Property="Height" Value="50"/>
-        <Setter Property="Background" Value="LightGray"/>
-        <Setter Property="Foreground" Value="Black"/>
-        <Setter Property="BorderBrush" Value="Gray"/>
-        <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="FontWeight" Value="Bold"/>
-        <Setter Property="Cursor" Value="Hand"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Border x:Name="border"
-                            Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="25">
-                        <ContentPresenter HorizontalAlignment="Center"
-                                          VerticalAlignment="Center"/>
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="border" Property="Background" Value="DarkGray"/>
-                        </Trigger>
-                        <Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="border" Property="Background" Value="DimGray"/>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
 
 
-    <Style x:Key="ScrollBarRound" TargetType="ScrollBar">
-      <Setter Property="Width" Value="30"/>
-      <Setter Property="Template">
-        <Setter.Value>
-          <ControlTemplate TargetType="ScrollBar">
-            <Grid Background="Transparent">
-              <Track Name="PART_Track" IsDirectionReversed="True"  ViewportSize="NaN">
-                <Track.Thumb>
-                  <Thumb x:Name="Thumb">
-                    <Thumb.Template>
-                      <ControlTemplate TargetType="Thumb">
-                        <Grid Width="30" Height="30">
-                          <Ellipse x:Name="ThumbEllipse"
-                                   Fill="LightGray"
-                                   Stroke="Black"
-                                   StrokeThickness="1"/>
-                          <TextBlock Text="⇅"
-                                     FontSize="20"
-                                     FontWeight="Bold"
-                                     Margin="0,-3,0,0"
-                                     HorizontalAlignment="Center"
-                                     VerticalAlignment="Center"/>
-                        </Grid>
-                        <ControlTemplate.Triggers>
-                          <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="ThumbEllipse" Property="Fill" Value="Gray"/>
-                          </Trigger>
-                          <Trigger Property="IsDragging" Value="True">
-                            <Setter TargetName="ThumbEllipse" Property="Fill" Value="DimGray"/>
-                          </Trigger>
-                        </ControlTemplate.Triggers>
-                      </ControlTemplate>
-                    </Thumb.Template>
-                  </Thumb>
-                </Track.Thumb>
-              </Track>
-            </Grid>
-          </ControlTemplate>
-        </Setter.Value>
-      </Setter>
-    </Style>
+
+    
   
 
-    <Style x:Key="ButtonWrapPanalApp" TargetType="Button">
-      <Setter Property="Margin" Value="5,5,5,5"/>
-      <Setter Property="Width" Value="140"/>
-      <Setter Property="Height" Value="90"/>
-      <Setter Property="Background" Value="#80D3D3D3"/>
-      <Setter Property="Foreground" Value="Black"/>
-      <Setter Property="FontSize" Value="14"/>
-      <Setter Property="BorderThickness" Value="3,3,4,4"/>
-      <Setter Property="BorderBrush" Value="Black"/>
-      <Setter Property="Template">
-        <Setter.Value>
-          <ControlTemplate TargetType="Button">
-            <Border x:Name="border"
-                    Background="{TemplateBinding Background}"
-                    BorderBrush="{TemplateBinding BorderBrush}"
-                    BorderThickness="{TemplateBinding BorderThickness}"
-                    CornerRadius="15">
-              <ContentPresenter HorizontalAlignment="Center"
-                VerticalAlignment="Center"/>
-            </Border>
-            <ControlTemplate.Triggers>
-              <Trigger Property="IsMouseOver" Value="True">
-                <Setter TargetName="border" Property="BorderThickness" Value="2,2,3,3"/>
-                <Setter TargetName="border" Property="Background" Value="#80999999"/>
-              </Trigger>
-              <Trigger Property="IsPressed" Value="True">
-                <Setter TargetName="border" Property="BorderThickness" Value="1,1,1,1"/>
-                <Setter TargetName="border" Property="Background" Value="#80666666"/>
-              </Trigger>
-            </ControlTemplate.Triggers>
-          </ControlTemplate>
-        </Setter.Value>
-      </Setter>
-    </Style>
+    
 
   
   

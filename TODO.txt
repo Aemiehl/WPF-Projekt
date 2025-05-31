@@ -1,0 +1,22 @@
+﻿1: Title  Bar
+https://learn.microsoft.com/en-us/windows/apps/develop/title-bar
+
+2: Darkmode Redo
+Die Darkmode in soweit ändern dass es Farben allgemein ändert
+dass man Farben für alles hat
+
+Base Schrift
+Base Background
+Base ...
+
+Immer diese Base nutzen damit dann die Farben überall gleich sind und stimmen
+
+3: App add remove
+
+4: Appdata save
+Save different things like settings, user data, etc.
+
+5: Appdata load
+
+6: ShortCuts
+Perhabs these AppButton can be ShortCuts to open apps or links etc
