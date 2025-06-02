@@ -186,16 +186,19 @@ namespace WPF_Projekt
 
         // ===================== Fensterbutton-Ereignisse =====================
 
-        public static void AttachButtonEvents(Window window, Button closeButton, Button minimizeButton, Button maximizeButton)
+        public static void AttachButtonEvents(Window window, Button closeButton, Button minimizeButton, Button? maximizeButton = null)
         {
             closeButton.Click += (_, _) => window.Close();
             minimizeButton.Click += (_, _) => window.WindowState = WindowState.Minimized;
-            maximizeButton.Click += (_, _) =>
+            if (maximizeButton != null)
             {
-                window.WindowState = window.WindowState == WindowState.Maximized
-                    ? WindowState.Normal
-                    : WindowState.Maximized;
-            };
+                maximizeButton.Click += (_, _) =>
+                {
+                    window.WindowState = window.WindowState == WindowState.Maximized
+                        ? WindowState.Normal
+                        : WindowState.Maximized;
+                };
+            }
         }
 
         // ===================== Resize Border je nach Zustand =====================
@@ -243,11 +246,11 @@ namespace WPF_Projekt
         // ===================== Haupt-API =====================
 
         public static void AttachAll(Window window,
-                                     FrameworkElement header,
-                                     Button closeButton,
-                                     Button minimizeButton,
-                                     Button maximizeButton,
-                                     Thickness? resizeBorderThickness = null)
+                             FrameworkElement header,
+                             Button closeButton,
+                             Button minimizeButton,
+                             Button? maximizeButton = null,
+                             Thickness? resizeBorderThickness = null)
         {
             AttachMaximizeFix(window);
             AttachHeaderInteraction(header, window);

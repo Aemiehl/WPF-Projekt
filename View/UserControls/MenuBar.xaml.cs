@@ -23,19 +23,8 @@ namespace WPF_Projekt.View.UserControls
         public MenuBar()
         {
             InitializeComponent();
-            // Attach the custom window helper to the current window
-            this.Loaded += MenuBar_Loaded;
-
         }
 
-        private void MenuBar_Loaded(object sender, RoutedEventArgs e)
-        {
-            var window = Window.GetWindow(this);
-            if (window == null)
-                return; // zur Sicherheit
-
-            CustomWindowHelper.AttachAll(window, HeaderGrid, CloseButton, MinimizeButton, MaximizeButton);
-        }
         private void OnDarkmodeCheckboxChanged(object sender, RoutedEventArgs e)
         {
             var parentWindow = Window.GetWindow(this) as MainWindow;

@@ -15,15 +15,15 @@
                                         <ControlTemplate TargetType="Thumb">
                                             <Grid Width="30" Height="30">
                                                 <Ellipse x:Name="ThumbEllipse"
-                               Fill="LightGray"
-                               Stroke="Black"
-                               StrokeThickness="1"/>
+                                                         Fill="LightGray"
+                                                         Stroke="Black"
+                                                         StrokeThickness="1"/>
                                                 <TextBlock Text="⇅"
-                                 FontSize="20"
-                                 FontWeight="Bold"
-                                 Margin="0,-3,0,0"
-                                 HorizontalAlignment="Center"
-                                 VerticalAlignment="Center"/>
+                                                           FontSize="20"
+                                                           FontWeight="Bold"
+                                                           Margin="0,-3,0,0"
+                                                           HorizontalAlignment="Center"
+                                                           VerticalAlignment="Center"/>
                                             </Grid>
                                             <ControlTemplate.Triggers>
                                                 <Trigger Property="IsMouseOver" Value="True">

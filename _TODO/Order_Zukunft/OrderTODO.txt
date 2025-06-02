@@ -1,0 +1,26 @@
+﻿WPF_Projekt/
+│
+├─ App.xaml                    // Einstieg + globale Ressourcen
+├─ MainWindow.xaml             // Startfenster (nur View!)
+│
+├─ View/                      // Alles, was UI ist
+│   ├─ UserControls/          
+│   ├─ Windows/
+│   └─ Templates/             // ControlTemplates, Styles etc.
+│
+├─ ViewModel/                 // Für MVVM: Logik für UI (Bindable Properties, Commands)
+│   └─ MainViewModel.cs
+│
+├─ Model/                     // Datenklassen, Geschäftslogik, DTOs etc.
+│   └─ AppModel.cs
+│
+├─ Helpers/                   // Statische Tools, z. B. CustomWindowHelper
+│   └─ CustomWindowHelper.cs
+│
+├─ Services/                  // Optional: z. B. Datenbankzugriff, Logging, API-Zugriffe
+│   └─ ThemeService.cs
+│
+├─ Converters/                // IValueConverter-Klassen
+│   └─ BoolToVisibilityConverter.cs
+│
+└─ Resources/                 // z. B. Bilder, Icons, Fonts
