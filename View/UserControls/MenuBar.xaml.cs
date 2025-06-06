@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPF_Projekt.View.Windows;
 
 namespace WPF_Projekt.View.UserControls
 {
@@ -39,6 +40,12 @@ namespace WPF_Projekt.View.UserControls
             {
                 parentWindow.DarkmodeColor.Color = Colors.White;
             }
+        }
+
+        private void Add_Click(object sender, RoutedEventArgs e)
+        {
+            AddWindow addWindow = new AddWindow();
+            addWindow.ShowDialog(); //stop main until Window is closed else only show()
         }
     }
 }

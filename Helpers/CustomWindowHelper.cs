@@ -188,7 +188,7 @@ namespace WPF_Projekt
 
         public static void AttachButtonEvents(Window window, Button closeButton, Button minimizeButton, Button? maximizeButton = null)
         {
-            closeButton.Click += (_, _) => window.Close();
+            closeButton.Click += (_, _) => window.Close(); //Application.Current.Shutdown(); //
             minimizeButton.Click += (_, _) => window.WindowState = WindowState.Minimized;
             if (maximizeButton != null)
             {

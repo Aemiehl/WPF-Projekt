@@ -20,3 +20,125 @@ Save different things like settings, user data, etc.
 
 6: ShortCuts
 Perhabs these AppButton can be ShortCuts to open apps or links etc
+
+
+
+(10)
+Öffnen vom Explorer
+OpenFileDialog abc = new OpenFileDialog();
+fileDialog.ShowDialog(); -> Return True/false/Null (not file selected)
+
+string path = fildeDialog.FileName; (Full Path + Name)
+string Name = fildeDialog.SafeFileName;
+
+fileDialog.InitialDirectory = "C:\\temp*"; (start Directory)
+
+fileDialog.Title = "Datei wählen";
+
+fileDialog.Filter = "C# SourceFiles | *.cs";  (zeigt dann nur die Dateien an)
+Text files (*.txt)|*.txt|All files (*.*)|*.* (so würde auch mehr gehen)
+Image Files(*.BMP;*.JPG;*.GIF)|*.BMP;*.JPG;*.GIF|All files (*.*)|*.*
+
+fileDialog.Multiselect = true; (nun mehrere Dateien wählbar) -> String[] dann statt nur String als Rückgabe
+
+(11)
+Hier problem da in WinForms Packages
+FolderBrowserDialog dialog = new FolderBrowserDialog(); Ähnlich zu fileDialog nun für Folder auswählen
+dialog.Show();
+
+Projekt -> Propertys -> Enable Windows Forms for this Project (um WinForms Packages nutzen zu können
+-> using System.Windows.Forms; (ambigous calls) -> alias using WinFroms = System.Windows.Forms;
+=> WinForms.FolderBrowserDialog dialog = new WinForms.FolderBrowserDialog();
+WinForms.DialogResult result = dialog.ShowDialog();
+if(result == WinFroms.DialogResult.OK) (return OK wenn Folder gewählt)
+string folder = dialog.SelectedPath;
+
+(13)
+OberservableCollection (ListView)
+xaml:
+<ListView Name= "listView1" Grid.Row="1" Grid.ColumnSpan="2" ItemSource="{Binding Entries}"/>
+cs:
+public MainWindow()
+{
+	DataContext = this; 
+	entries = new ObservableCollection<string>(); 
+	InitializeComponent(); -> need to be after ObservableCollection
+}
+
+private OversableCollection<string> entries; -> can be anything no need to be string
+public ObservableCollection<string> Entries
+{
+	get { return entries; }
+	set { entries = value; }  -> OnPropertyChanged(); wird von ObservableCollection für Add/Remove... übernommen
+
+}
+
+private void btnAdd_Click(object sender, RoutedEventArgs e)
+{
+	Entries.Add(txtEntry.Text);
+}
+
+private void btnDelete_Click(object sender, RoutedEventArgs e)
+{
+	string selectedItem = (string)lvEntries.SelectedItem; -> GUI Logic
+	Entries.Remove(selectedItem); -> Buissines Logic (this later perhabs in ViewModel)
+}
+
+private void btnClear_Click(object sender, RoutedEventArgs e)
+{
+	Entries.Clear();
+}
+SelectedItems (multiple) -> not possible by default
+
+(14)
+StackPanal
+Items get stacked inside the container -> Can be nested
+Default Vertical, Defautl streched
+
+(15)
+GridSplitter, Moveable Element inside of a Window
+
+<Grid>
+	<Grid.RowDefinitions>
+		<RowDefinitions Height="35"/> -> Carefully if both Rows have static height (percantage are ok)
+		<RowDefinitions Height="50"/>
+		<RowDefinitions Height="5"/>
+		<RowDefinitions Height="*"/>
+	</Grid.RowDefinitions>
+
+	<Rectangle Grid.Row="0" Fill="Red"/>
+	<Rectangle Grid.Row="1" Fill="Green"/>	
+	<GridSplitter Grid.Row="2" HorizontalAlignment="Stretch"/> -> always needs to be Strechted, only Green and Blue are moving
+	<Rectangle Grid.Row="3" Fill="Blue"/>
+</Grid>
+
+This can be used in nested Grids aswell, and in Columns aswell
+
+(16)
+Expander -> can put items into it
+Header for the title of "button", ExpandDirection="Left" -> set Name and directions
+Can be used in a Colum aswell
+expanderDetails.isExpanded -> contains if expanded, ca be accessed from button aswell
+
+(17)
+ScrollViewer
+can contain items, has a scrollbar if needed
+VerticalScrollBarVisibility="Auto,Disable,Show,Hidden" -> Hidden enables scrolling just hides the bar
+HorizontalScrollBarVisibility="Auto..."
+
+(18)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

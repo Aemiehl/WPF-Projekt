@@ -8,15 +8,16 @@
         xmlns:UserControls="clr-namespace:WPF_Projekt.View.UserControls"
         mc:Ignorable="d"
         Title="AppLauncher" Height="450" Width="800"
-        WindowStyle="None"
-        ResizeMode="CanResize">
+        WindowStyle="None">
 
     
     <WindowChrome.WindowChrome>
         <shell:WindowChrome 
             CaptionHeight="0"
+            GlassFrameThickness="0"
+            CornerRadius="0"
             ResizeBorderThickness="5" 
-            UseAeroCaptionButtons="False"/> 
+            />
     </WindowChrome.WindowChrome>
 
     <Grid>
@@ -34,8 +35,8 @@
                    HorizontalAlignment="Stretch">
             <Rectangle.Fill>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1.4,.85">
-                    <GradientStop Color="Purple" Offset="-.2"/>
-                    <GradientStop Color="LightGray" Offset="0.2"/>
+                    <GradientStop Color="#06402B" Offset="0"/>
+                    <GradientStop Color="LightGray" Offset="0.4"/>
                     <GradientStop x:Name="DarkmodeColor" Color="Black" Offset="0.8"/>
                 </LinearGradientBrush>
             </Rectangle.Fill>

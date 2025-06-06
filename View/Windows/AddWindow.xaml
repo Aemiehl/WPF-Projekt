@@ -1,0 +1,81 @@
+﻿<Window x:Class="WPF_Projekt.View.Windows.AddWindow"
+        xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_Projekt.View.Windows"
+        xmlns:UserControls="clr-namespace:WPF_Projekt.View.UserControls"
+        mc:Ignorable="d"
+        Title="AddWindow" Height="350" Width="250"
+        WindowStyle="None">
+
+    <WindowChrome.WindowChrome>
+        <shell:WindowChrome 
+        CaptionHeight="0"
+        GlassFrameThickness="0"
+        CornerRadius="0"
+        ResizeBorderThickness="5" 
+        />
+    </WindowChrome.WindowChrome>
+
+
+    <Grid Background="White" Height="350" Width="250">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="75"/>
+            <RowDefinition Height="75"/>
+            <RowDefinition Height="75"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <UserControls:TaskBarNoFullscreen Grid.Row="0"/>
+        <TextBlock Grid.Row="0" Text="Add App/Link"  IsHitTestVisible="False" Width="100px" FontSize="15" Foreground="Black" Background="Transparent" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,5,0" FontWeight="DemiBold"/>
+
+        <ComboBox Grid.Row="1" 
+                  FontSize="18"
+                  FontWeight="Light"
+                  VerticalContentAlignment="Center"
+                  HorizontalContentAlignment="Left"
+                  Height="30" 
+                  Margin="20,10,20,10"
+                  VerticalAlignment="Center" 
+                  HorizontalAlignment="Stretch"
+                  SelectedIndex="0">
+            <ComboBoxItem Content="Choose Element" IsEnabled="False" Foreground="Gray"/>
+            <ComboBoxItem Content="Application"/>
+            <ComboBoxItem Content="Link"/>
+            <ComboBoxItem Content="Folder"/>
+            <ComboBoxItem Content="File"/>
+        </ComboBox>
+
+        <UserControls:TextBoxMod Grid.Row="2"
+                          DescriptionText="Address" 
+                          InputText="" 
+                          PlaceholderText="Enter address here..."/>
+
+        <UserControls:TextBoxMod Grid.Row="3"
+                          DescriptionText="Icon" 
+                          InputText="" 
+                          PlaceholderText="Enter icon path here..."/>
+
+        <UserControls:TextBoxMod Grid.Row="4"
+                          DescriptionText="Name" 
+                          InputText="" 
+                          PlaceholderText="Enter name here..."/>
+
+        <Grid Grid.Row="5"
+              Margin="20,0,20,0">
+            <Button Content="Add" 
+                    Width="80" 
+                    Height="30" 
+                    HorizontalAlignment="Right" 
+                    VerticalAlignment="Center"
+                    Background="LightGray" 
+                    Foreground="Black"
+                    FontSize="16"/>
+        </Grid>
+    </Grid>
+
+</Window>
