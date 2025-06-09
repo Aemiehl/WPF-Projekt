@@ -26,11 +26,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="_TODO\Order_Zukunft\Model\" />
     <Folder Include="_TODO\Order_Zukunft\Converters\" />
     <Folder Include="_TODO\Order_Zukunft\Resources\" />
     <Folder Include="_TODO\Order_Zukunft\Services\" />
-    <Folder Include="_TODO\Order_Zukunft\ViewModel\" />
   </ItemGroup>
 
 </Project>

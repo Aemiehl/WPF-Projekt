@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WPF_Projekt.ViewModel;
 
 namespace WPF_Projekt.View.Windows
 {
@@ -19,9 +20,12 @@ namespace WPF_Projekt.View.Windows
     /// </summary>
     public partial class AddWindow : Window
     {
-        public AddWindow()
-        {
+        public AddWindow(Window parentWindow)
+        {   
+            Owner = parentWindow;
             InitializeComponent();
+            //AddWindowViewModel vm = new AddWindowViewModel();
+            //DataContext = vm;
         }
     }
 }

@@ -8,7 +8,9 @@
         xmlns:UserControls="clr-namespace:WPF_Projekt.View.UserControls"
         mc:Ignorable="d"
         Title="AddWindow" Height="350" Width="250"
-        WindowStyle="None">
+        WindowStartupLocation="CenterOwner"
+        WindowStyle="None"
+        ResizeMode="NoResize">
 
     <WindowChrome.WindowChrome>
         <shell:WindowChrome 
@@ -42,7 +44,8 @@
                   Margin="20,10,20,10"
                   VerticalAlignment="Center" 
                   HorizontalAlignment="Stretch"
-                  SelectedIndex="0">
+                  SelectedIndex="0"
+                  Con>
             <ComboBoxItem Content="Choose Element" IsEnabled="False" Foreground="Gray"/>
             <ComboBoxItem Content="Application"/>
             <ComboBoxItem Content="Link"/>
@@ -52,17 +55,17 @@
 
         <UserControls:TextBoxMod Grid.Row="2"
                           DescriptionText="Address" 
-                          InputText="" 
+                          InputText="{Binding Item.SavePath, UpdateSourceTrigger=PropertyChanged}"
                           PlaceholderText="Enter address here..."/>
 
         <UserControls:TextBoxMod Grid.Row="3"
                           DescriptionText="Icon" 
-                          InputText="" 
+                          InputText="{Binding Item.IconPath, UpdateSourceTrigger=PropertyChanged}"
                           PlaceholderText="Enter icon path here..."/>
 
         <UserControls:TextBoxMod Grid.Row="4"
                           DescriptionText="Name" 
-                          InputText="" 
+                          InputText="{Binding Item.Name, UpdateSourceTrigger=PropertyChanged}" 
                           PlaceholderText="Enter name here..."/>
 
         <Grid Grid.Row="5"

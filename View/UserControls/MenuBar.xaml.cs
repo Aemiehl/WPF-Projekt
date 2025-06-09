@@ -44,8 +44,10 @@ namespace WPF_Projekt.View.UserControls
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
-            AddWindow addWindow = new AddWindow();
+            AddWindow addWindow = new AddWindow(Window.GetWindow(this));
+            Opacity = 0.7; // Set opacity to indicate loading state
             addWindow.ShowDialog(); //stop main until Window is closed else only show()
+            Opacity = 1; // Reset opacity after creating the window
         }
     }
 }
