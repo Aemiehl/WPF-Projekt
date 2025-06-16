@@ -44,8 +44,7 @@
                   Margin="20,10,20,10"
                   VerticalAlignment="Center" 
                   HorizontalAlignment="Stretch"
-                  SelectedIndex="0"
-                  Con>
+                 SelectedIndex="0">
             <ComboBoxItem Content="Choose Element" IsEnabled="False" Foreground="Gray"/>
             <ComboBoxItem Content="Application"/>
             <ComboBoxItem Content="Link"/>
@@ -55,17 +54,17 @@
 
         <UserControls:TextBoxMod Grid.Row="2"
                           DescriptionText="Address" 
-                          InputText="{Binding Item.SavePath, UpdateSourceTrigger=PropertyChanged}"
+                          InputText="{Binding AddItem.SavePath, UpdateSourceTrigger=PropertyChanged}"
                           PlaceholderText="Enter address here..."/>
 
         <UserControls:TextBoxMod Grid.Row="3"
                           DescriptionText="Icon" 
-                          InputText="{Binding Item.IconPath, UpdateSourceTrigger=PropertyChanged}"
+                          InputText="{Binding AddItem.IconPath, UpdateSourceTrigger=PropertyChanged}"
                           PlaceholderText="Enter icon path here..."/>
 
         <UserControls:TextBoxMod Grid.Row="4"
                           DescriptionText="Name" 
-                          InputText="{Binding Item.Name, UpdateSourceTrigger=PropertyChanged}" 
+                          InputText="{Binding AddItem.Name, UpdateSourceTrigger=PropertyChanged}"
                           PlaceholderText="Enter name here..."/>
 
         <Grid Grid.Row="5"

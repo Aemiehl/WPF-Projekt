@@ -11,18 +11,18 @@ namespace WPF_Projekt.ViewModel
 
         public AddWindowViewModel()
         {
-
+            addItem = new Item();
+            Items = new ObservableCollection<Item>();
         }
 
         private Item addItem;
 
-
         public Item AddItem
         {
-            get { return AddItem; }
-            set 
-            { 
-                AddItem = value;
+            get { return addItem; }
+            set
+            {
+                addItem = value;
                 OnPropertyChanged();
             }
         }
