@@ -11,6 +11,6 @@ namespace WPF_Projekt.ViewModel
 {
     class MainWindowViewModel : ViewModelBase
     {
-        public ObservableCollection<Item> Items => ItemData.Items;
+        public ReadOnlyObservableCollection<Item> Items => ItemData.Items;
     }
 }

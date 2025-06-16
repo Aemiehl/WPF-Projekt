@@ -22,6 +22,21 @@ Save different things like settings, user data, etc.
 Perhabs these AppButton can be ShortCuts to open apps or links etc
 
 
+Ideen:
+Darkmode richtig einbinden
+allgemein MVVM in allen Dateien 
+Funktion der Button Items hinzufügen
+Mindest grlße des Fensters festlegen
+Apps löschen können
+eine App ganz hintne in der Liste (Name zb "+") um eine App hinzuzufügen zu können
+weitere Menüoptionen hinzufügen
+Suchfunktion hinzufügen
+Filterfunktion hinzufügen
+Reihenfolge der Apps ändern können (ggf. Drag and Drop)
+Profile erstellen und laden (mit Einstellungen, etc.)
+verschiedene weitere Funktionen hinzufügen (wie z.b. Sound lauter, leiser...)
+
+
 
 (10)
 Öffnen vom Explorer

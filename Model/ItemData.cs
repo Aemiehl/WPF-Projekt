@@ -10,16 +10,31 @@ namespace WPF_Projekt.Model
 
     public static class ItemData
     {
-        public static ObservableCollection<Item> Items { get; private set; }
+        private static readonly ObservableCollection<Item> _items;
+        public static ReadOnlyObservableCollection<Item> Items { get; }
 
         static ItemData()
         {
-            Items = ItemStorageService.LoadItems();
+            _items = ItemStorageService.LoadItems();
+            Items = new ReadOnlyObservableCollection<Item>(_items);
+            _items.CollectionChanged += (_, _) => ItemStorageService.SaveItems(_items);
+        }
 
-            // Optional: Auto-Save bei Änderungen
-            Items.CollectionChanged += (_, _) => ItemStorageService.SaveItems(Items);
+        public static void Add(Item item)
+        {
+            _items.Add(item);
+        }
+
+        public static void Remove(Item item)
+        {
+            _items.Remove(item);
+        }
+
+        public static void Clear()
+        {
+            _items.Clear();
         }
     }
-    
+
 
 }
