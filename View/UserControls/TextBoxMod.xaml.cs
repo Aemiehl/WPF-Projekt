@@ -81,7 +81,6 @@ namespace WPF_Projekt.View.UserControls
 
         private void Button_Click_Remove_Text(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine("Button clicked, re");
             InputText = "";
             txtInput.Focus();
         }

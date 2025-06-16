@@ -21,7 +21,7 @@ namespace WPF_Projekt.View.Windows
     public partial class AddWindow : Window
     {
         public AddWindow(Window parentWindow)
-        {   
+        {
             Owner = parentWindow;
             InitializeComponent();
             AddWindowViewModel vm = new AddWindowViewModel();

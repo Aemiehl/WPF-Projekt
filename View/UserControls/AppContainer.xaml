@@ -15,7 +15,9 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
+
     
+
     <Grid>
         <ScrollViewer Grid.Row="1"
                       HorizontalScrollBarVisibility="Disabled"

@@ -9,14 +9,13 @@ namespace WPF_Projekt.ViewModel
 {
     internal class AddWindowViewModel : ViewModelBase  //base class for MVVM pattern and implements INotifyPropertyChanged
     {
-        public ObservableCollection<Item> Items { get; set; }
+        public ObservableCollection<Item> Items => ItemData.Items;
 
         public RelayCommand AddItemCommand => new RelayCommand(execute => AddItems()/*, canExecute => { return true; }*/);
 
         public AddWindowViewModel()
         {
             Item = new Item();
-            Items = new ObservableCollection<Item>();
         }
 
 

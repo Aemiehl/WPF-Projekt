@@ -41,5 +41,8 @@ namespace WPF_Projekt.View.UserControls
                 typeof(ObservableCollection<Item>),
                 typeof(AppContainer),
                 new PropertyMetadata(null));
+
+
+
     }
 }
