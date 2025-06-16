@@ -1,4 +1,6 @@
 ﻿using System.Collections.ObjectModel;
+using System.Windows;
+using System.Windows.Controls;
 using WPF_Projekt.Model;
 using WPF_Projekt.MVVM;
 
@@ -9,27 +11,32 @@ namespace WPF_Projekt.ViewModel
     {
         public ObservableCollection<Item> Items { get; set; }
 
+        public RelayCommand AddItemCommand => new RelayCommand(execute => AddItems()/*, canExecute => { return true; }*/);
+
         public AddWindowViewModel()
         {
-
+            Item = new Item();
+            Items = new ObservableCollection<Item>();
         }
 
-        private Item addItem;
 
+        private Item item;
 
-        public Item AddItem
+        public Item Item
         {
-            get { return AddItem; }
+            get { return item; }
             set 
             { 
-                AddItem = value;
+                item = value;
                 OnPropertyChanged();
             }
         }
 
+        private void AddItems()
+        {
+            Items.Add(item);
+        }
 
-
-        
 
     }
 

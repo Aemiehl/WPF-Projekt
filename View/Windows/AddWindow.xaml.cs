@@ -24,8 +24,8 @@ namespace WPF_Projekt.View.Windows
         {   
             Owner = parentWindow;
             InitializeComponent();
-            //AddWindowViewModel vm = new AddWindowViewModel();
-            //DataContext = vm;
+            AddWindowViewModel vm = new AddWindowViewModel();
+            DataContext = vm;
         }
     }
 }

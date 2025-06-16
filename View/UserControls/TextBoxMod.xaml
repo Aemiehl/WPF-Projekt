@@ -10,14 +10,14 @@
     <Grid Margin="20,10,20,10" 
       Background="White">
         <TextBlock x:Name="Description" 
-                   Text="{Binding DescriptionText}" 
+                   Text="{Binding DescriptionText, RelativeSource={RelativeSource AncestorType=UserControl}}"
                    FontWeight="Medium"
                    VerticalAlignment="Top" 
                    HorizontalAlignment="Left"
                    FontSize="18" 
                    Foreground="Black"/>
         <TextBox x:Name="txtInput"
-                 Text="{Binding InputText, UpdateSourceTrigger=PropertyChanged}"
+                 Text="{Binding InputText, RelativeSource={RelativeSource AncestorType=UserControl}, UpdateSourceTrigger=PropertyChanged}"
                  Height="30" 
                  Background="Transparent"
                  FontSize="18"
@@ -26,7 +26,7 @@
                  HorizontalAlignment="Stretch" 
                  Foreground="Black"
                  Margin="0,0,0,0"
-                 TextChanged="txtInput_TextChanged"/>
+                 TextChanged="TxtInput_TextChanged"/>
         <Button Content="X"
                 HorizontalContentAlignment="Center"
                 VerticalContentAlignment="Center"
@@ -39,7 +39,7 @@
                 BorderBrush="Black"
                 BorderThickness="1"/>
         <TextBlock x:Name="Placeholder" 
-                   Text="{Binding PlaceholderText}" 
+                   Text="{Binding PlaceholderText, RelativeSource={RelativeSource AncestorType=UserControl}}"
                    Height="30"
                    FontWeight="Light"
                    FontSize="18" 

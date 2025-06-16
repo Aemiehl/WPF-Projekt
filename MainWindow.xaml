@@ -43,7 +43,7 @@
         </Rectangle>
 
         <!--hier ist der Container für alle Apps-->
-        <UserControls:AppContainer Grid.Row="1"/>
+        <UserControls:AppContainer Grid.Row="1" Items="{Binding Items}"/>
         
     </Grid>
     

@@ -32,13 +32,23 @@
                 </Style>
             </ScrollViewer.Resources>
             <!--hier sind die apps-->
-            <WrapPanel x:Name="AppList"
-                       Orientation="Horizontal"
-                       Margin="5,10,5,10">
-                <WrapPanel.Resources>
-                    <Style TargetType="Button" BasedOn="{StaticResource AppButton}"/>
-                </WrapPanel.Resources>
-            </WrapPanel>
+            <ItemsControl x:Name="AppList"
+                  ItemsSource="{Binding Items}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button Content="{Binding Name}"
+                        Style="{StaticResource AppButton}"
+                        Width="140"
+                        Height="90"
+                        Margin="5"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
         </ScrollViewer>
     </Grid>
 </UserControl>

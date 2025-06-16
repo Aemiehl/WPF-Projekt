@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPF_Projekt.Model;
 
 namespace WPF_Projekt.View.UserControls
 {
@@ -23,10 +25,21 @@ namespace WPF_Projekt.View.UserControls
         public AppContainer()
         {
             InitializeComponent();
-            for (int i = 0; i < 115; i++)
-            {
-                AppList.Children.Add(new Button { Content = $"App {i + 1}" });
-            }
+            //for (int i = 0; i < 115; i++)
+            //{
+            //    AppList.Children.Add(new Button { Content = $"App {i + 1}" });
+            //}
         }
+        public ObservableCollection<Item> Items
+        {
+            get => (ObservableCollection<Item>)GetValue(ItemsProperty);
+            set => SetValue(ItemsProperty, value);
+        }
+
+        public static readonly DependencyProperty ItemsProperty =
+            DependencyProperty.Register(nameof(Items),
+                typeof(ObservableCollection<Item>),
+                typeof(AppContainer),
+                new PropertyMetadata(null));
     }
 }

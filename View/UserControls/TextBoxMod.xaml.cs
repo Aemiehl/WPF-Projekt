@@ -28,49 +28,50 @@ namespace WPF_Projekt.View.UserControls
         public TextBoxMod()
         {
             InitializeComponent();
-            DataContext = this;
+            //DataContext = this;
         }
 
         //OnPropertyChanged()
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        private string descriptionText;
+        public static readonly DependencyProperty DescriptionTextProperty =
+         DependencyProperty.Register(
+             nameof(DescriptionText),
+             typeof(string),
+             typeof(TextBoxMod),
+             new PropertyMetadata(""));
+
         public string DescriptionText
         {
-            get { return descriptionText; }
-            set
-            {
-                descriptionText = value;
-                //dont do this
-                //Description.Text = descriptionText;
-
-                //do this
-                //OnPropertyChanged()
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(DescriptionText)));
-
-            }
+            get => (string)GetValue(DescriptionTextProperty);
+            set => SetValue(DescriptionTextProperty, value);
         }
 
-        private string inputText;
+
+        public static readonly DependencyProperty InputTextProperty =
+        DependencyProperty.Register(
+            nameof(InputText),
+            typeof(string),
+            typeof(TextBoxMod),
+            new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault)
+    );
+
         public string InputText
         {
-            get { return inputText; }
-            set
-            {
-                inputText = value;
-                OnPropertyChanged();
-            }
+            get => (string)GetValue(InputTextProperty);
+            set => SetValue(InputTextProperty, value);
         }
 
-        private string placeholderText;
+        public static readonly DependencyProperty PlaceholderTextProperty =
+        DependencyProperty.Register(
+            nameof(PlaceholderText),
+            typeof(string),
+            typeof(TextBoxMod),
+            new PropertyMetadata(""));
         public string PlaceholderText
         {
-            get { return placeholderText; }
-            set
-            {
-                placeholderText = value;
-                OnPropertyChanged();
-            }
+            get => (string)GetValue(PlaceholderTextProperty);
+            set => SetValue(PlaceholderTextProperty, value);
         }
 
         private void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -85,7 +86,7 @@ namespace WPF_Projekt.View.UserControls
             txtInput.Focus();
         }
 
-        private void txtInput_TextChanged(object sender, TextChangedEventArgs e)
+        private void TxtInput_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (string.IsNullOrEmpty(txtInput.Text))
             {

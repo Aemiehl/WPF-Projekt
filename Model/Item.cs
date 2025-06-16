@@ -1,7 +1,7 @@
 ﻿//hier soll das Model für das Window AddWindow sein 
 namespace WPF_Projekt.Model
 {
-    internal class Item
+    public class Item
     {
         public string AppType { get; set; }
         public string Name { get; set; }
