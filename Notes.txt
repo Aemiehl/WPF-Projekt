@@ -1,0 +1,9 @@
+﻿allgemein MVVM in allen Dateien (1)
+MainWindow done	(wieder vorerst entfernt)
+AddWindow done
+TextBoxMod done (nur UI im Code-Behind)
+TaskBarNoFullscreen done
+TaskBar done
+AppContainer done
+
+MenuBar TODO

@@ -22,13 +22,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="View\Templates\AppStyles.xaml" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <Folder Include="Services\" />
     <Folder Include="_TODO\Order_Zukunft\Converters\" />
     <Folder Include="_TODO\Order_Zukunft\Resources\" />
-    <Folder Include="_TODO\Order_Zukunft\Services\" />
   </ItemGroup>
 
 </Project>

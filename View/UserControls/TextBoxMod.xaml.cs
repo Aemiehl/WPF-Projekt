@@ -18,9 +18,8 @@ using System.Windows.Shapes;
 
 namespace WPF_Projekt.View.UserControls
 {
-    /// <summary>
-    /// Interaktionslogik für TextBoxMod.xaml
-    /// </summary>
+    // das hier müsste MVVM konform sein, da sich alles auf die visuelle Darstellung oder UI Interaktionen bezieht
+    // hier wird die Logik für die TextBoxMod UserControl implementiert
 
                                                    //OnPropertyChanged()
     public partial class TextBoxMod : UserControl, INotifyPropertyChanged

@@ -11,6 +11,7 @@ namespace WPF_Projekt.ViewModel
 {
     class MainWindowViewModel : ViewModelBase
     {
-        public ReadOnlyObservableCollection<Item> Items => ItemData.Items;
+        //nicht mehr nötig da in AppContainerViewModel direkt eingebunden
+        //public ReadOnlyObservableCollection<Item> Items => ItemData.Items;
     }
 }

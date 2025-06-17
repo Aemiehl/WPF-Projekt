@@ -25,6 +25,12 @@
             <RowDefinition Height="35" /> 
             <RowDefinition Height="*" /> 
         </Grid.RowDefinitions>
+
+        <!--TaskBar-->
+        <UserControls:TaskBar Grid.Row="0"/>
+
+        <!--Titel-->
+        <TextBlock Grid.Row="0" Text="&lt;My App/&gt;" IsHitTestVisible="False" Width="100px" FontSize="15" Foreground="Black" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,5,0" FontWeight="DemiBold"/>
         
         <!--hier soll die ganze HeadLeiste Definiert werden-->
         <UserControls:MenuBar Grid.Row="0"/>
@@ -43,7 +49,7 @@
         </Rectangle>
 
         <!--hier ist der Container für alle Apps-->
-        <UserControls:AppContainer Grid.Row="1" Items="{Binding Items}"/>
+        <UserControls:AppContainer Grid.Row="1"/>
         
     </Grid>
     

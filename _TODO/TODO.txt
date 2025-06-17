@@ -23,10 +23,11 @@ Perhabs these AppButton can be ShortCuts to open apps or links etc
 
 
 Ideen:
+AddWindow soll sich beim hinzufügen eines buttons schließen (3)
 Darkmode richtig einbinden
-allgemein MVVM in allen Dateien 
+allgemein MVVM in allen Dateien (1)
 Funktion der Button Items hinzufügen
-Mindest grlße des Fensters festlegen
+Mindest größe des Fensters festlegen (2)
 Apps löschen können
 eine App ganz hintne in der Liste (Name zb "+") um eine App hinzuzufügen zu können
 weitere Menüoptionen hinzufügen

@@ -16,12 +16,6 @@
     </UserControl.Resources>
 
     <Grid Height="35" x:Name="HeaderGrid">
-        <!--TaskBar-->
-        <local:TaskBar/>
-
-        <!--Titel-->
-        <TextBlock Text="&lt;My App/&gt;" IsHitTestVisible="False" Width="100px" FontSize="15" Foreground="Black" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,5,0" FontWeight="DemiBold"/>
-
         <!--Menu Items-->
         <Menu Margin="100,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent" BorderThickness="0,0,0,2" BorderBrush="#06402B">
             <MenuItem Header="File" Background="Transparent" FontSize="14" Foreground="Black" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3,2,3,2" BorderThickness="1" BorderBrush="Black">
