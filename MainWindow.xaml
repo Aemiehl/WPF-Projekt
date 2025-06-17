@@ -8,9 +8,10 @@
         xmlns:UserControls="clr-namespace:WPF_Projekt.View.UserControls"
         mc:Ignorable="d"
         Title="AppLauncher" Height="450" Width="800"
-        WindowStyle="None">
+        WindowStyle="None"
+        Opacity="{Binding MainOpacity}">
 
-    
+
     <WindowChrome.WindowChrome>
         <shell:WindowChrome 
             CaptionHeight="0"

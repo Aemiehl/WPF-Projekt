@@ -7,7 +7,7 @@ using System.Windows.Controls;
 
 namespace WPF_Projekt.ViewModel
 {
-    internal class AppContainerViewModel : ViewModelBase
+    class AppContainerViewModel : ViewModelBase
     {
         public ReadOnlyObservableCollection<Item> Items => ItemData.Items;
     }

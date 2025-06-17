@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WPF_Projekt.View.Windows;
+using WPF_Projekt.ViewModel;
 
 namespace WPF_Projekt.View.UserControls
 {
@@ -24,30 +25,9 @@ namespace WPF_Projekt.View.UserControls
         public MenuBar()
         {
             InitializeComponent();
+            MenuBarViewModel vm = new MenuBarViewModel();
+            DataContext = vm;
         }
 
-        private void OnDarkmodeCheckboxChanged(object sender, RoutedEventArgs e)
-        {
-            var parentWindow = Window.GetWindow(this) as MainWindow;
-            if (parentWindow == null || parentWindow.DarkmodeColor == null)
-                return;
-
-            if (CheckBox_Darkmode.IsChecked == true)
-            {
-                parentWindow.DarkmodeColor.Color = Colors.Black;
-            }
-            else
-            {
-                parentWindow.DarkmodeColor.Color = Colors.White;
-            }
-        }
-
-        private void Add_Click(object sender, RoutedEventArgs e)
-        {
-            AddWindow addWindow = new AddWindow(Window.GetWindow(this));
-            Opacity = 0.7; // Set opacity to indicate loading state
-            addWindow.ShowDialog(); //stop main until Window is closed else only show()
-            Opacity = 1; // Reset opacity after creating the window
-        }
     }
 }
